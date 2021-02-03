@@ -1,6 +1,7 @@
-import glob
+import pathlib
 
-files = glob.glob("./test/**/*", recursive=True)
+path = pathlib.Path("test")
+pathlib_files = path.glob("**/*")
 
-for file in files: 
+for file in list(pathlib_files):
   print(file)
