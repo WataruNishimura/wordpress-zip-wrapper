@@ -1,7 +1,7 @@
 import pathlib
 import argparse
 
-# argparse init parser 
+# CLI: for parse args
 parser = argparse.ArgumentParser(description="sample description")
 parser.add_argument('integers', metavar='N', type=int, nargs='+', help='an integer for the accumulator')
 args = parser.parse_args()
@@ -15,6 +15,7 @@ if(exclude_file_path.exists()):
   print("Exclude file exists")
   exclude_file_flag = True
 
+# Get file and folder list in specific directories.
 path = pathlib.Path("test")
 pathlib_files = path.glob("**/*")
 
