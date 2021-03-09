@@ -6,8 +6,8 @@ import os
 # CLI: for parse args
 parser = argparse.ArgumentParser(description="sample description")
 #parser.add_argument('integers', metavar='N', type=int, nargs='+', help='an integer for the accumulator')
-parser.add_argument('target', help='Set target folder')
-parser.add_argument('output', help='Set output zip file name')
+parser.add_argument('target', help='Target folder')
+parser.add_argument('output', help='Output file name and path')
 parser.add_argument('-e','--exclude', help='Exclude target from the given file.', default='.zipexclude')
 args = parser.parse_args()
 
