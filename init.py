@@ -14,15 +14,11 @@ args = parser.parse_args()
 exclude_file_path = pathlib.Path(args.exclude)
 exclude_file_flag = False
 
-# Get file and folder list in specific directories.
-target_folder = pathlib.Path(args.target)
-pathlib_files = target_folder.glob("**/*")
+target_folder_path = pathlib.Path(args.target)
+target_folder_flag = False
 
-target_files = pathlib_files
-
-def filter(org_file):
-  #return filter_flag
-  return 0
+output_file_path = pathlib.Path(args.output)
+output_file_flag = False
 
 if(exclude_file_path.exists()):
   print("Exclude file exists")
@@ -30,14 +26,31 @@ if(exclude_file_path.exists()):
 else:
   print('\033[31m' + "ERROR : Exclude file does not exist" + '\033[0m')
 
-if(target_folder.exists()):
+if(target_folder_path.exists()):
   print("Target folder exists")
-  exclude_file_flag = True
+  target_folder_flag = True
 else:
   print('\033[31m' + "ERROR : Target folder does not exist"  + '\033[0m')
 
+if(not output_file_path.exists()):
+  print("Output file does not exist")
+  output_file_flag = True
+else:
+  print('\033[31m' + "ERROR : Output file already exists"  + '\033[0m')
+
+
+
+def filter(org_file):
+  #return filter_flag
+  return 0
 
 if __name__=='__main__': 
-  for file in list(pathlib_files):
-    if(filter(file)):
-      target_files.remove(file)
+  if(exclude_file_flag == True and target_folder_flag == True and output_file_flag == True):
+    pathlib_files = target_folder_path.glob("**/*")
+    target_files = pathlib_files
+    for file in list(pathlib_files):
+      if(filter(file)):
+        target_files.remove(file)
+    
+    for file_new in list(target_files):
+      print(file_new)
