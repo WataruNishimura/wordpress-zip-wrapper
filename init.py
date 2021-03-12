@@ -41,3 +41,6 @@ if __name__=='__main__':
   for file in list(pathlib_files):
     if(filter(file)):
       target_files.remove(file)
+  
+  for file in list(target_files):
+    print(file)
