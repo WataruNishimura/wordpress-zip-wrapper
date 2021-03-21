@@ -4,3 +4,4 @@
 ## Library use
 - pathlib - for file management
 - argparse - for argument managemnt
+- zipfile - for making zip file
