@@ -2,6 +2,7 @@ import pathlib
 import argparse
 import re
 import os
+import zipfile
 
 # CLI: for parse args
 parser = argparse.ArgumentParser(description="sample description")
@@ -48,7 +49,7 @@ if __name__=='__main__':
   if(exclude_file_flag == True and target_folder_flag == True and output_file_flag == True):
     pathlib_files = list(target_folder_path.glob("**/*"))
     target_files = list(target_folder_path.glob("**/*"))
-    
+
     for file in pathlib_files:
       if(filter(file)):
         target_files.remove(file)
