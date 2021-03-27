@@ -43,18 +43,20 @@ else:
 
 def filter(org_file):
   #return filter_flag
-  return True
+  return False
 
 if __name__=='__main__': 
   if(exclude_file_flag == True and target_folder_flag == True and output_file_flag == True):
     pathlib_files = list(target_folder_path.glob("**/*"))
     target_files = list(target_folder_path.glob("**/*"))
     
+    for file in pathlib_files:
+      if(filter(file)):
+        target_files.remove(file)
+
+    for file_new in target_files:
+      print(file_new)
+
     with zipfile.ZipFile(output_file_path, 'w') as new_zip: 
-      for file in pathlib_files:
-        if(filter(file)):
-          new_zip.write(file)
-          target_files.remove(file)
-    
-      for file_new in target_files:
-        print(file_new)
+      for file in target_files:
+        new_zip.write(file)
