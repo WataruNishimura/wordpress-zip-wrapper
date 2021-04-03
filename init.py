@@ -13,12 +13,15 @@ parser.add_argument('-e','--exclude', help='Exclude target from the given file.'
 args = parser.parse_args()
 
 exclude_file_path = pathlib.Path(args.exclude)
+exclude_file_path = exclude_file_path.relative_to('')
 exclude_file_flag = False
 
 target_folder_path = pathlib.Path(args.target)
+target_folder_path = target_folder_path.relative_to('')
 target_folder_flag = False
 
 output_file_path = pathlib.Path(args.output)
+output_file_path = output_file_path .relative_to('')
 output_file_flag = False
 
 if(exclude_file_path.exists()):
@@ -29,6 +32,7 @@ else:
 
 if(target_folder_path.exists()):
   print("Target folder exists")
+  os.chdir(target_folder_path)
   target_folder_flag = True
 else:
   print('\033[31m' + "ERROR : Target folder does not exist"  + '\033[0m')
